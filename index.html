@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandera de México - David Ramirez</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container">
+        <h1 class="main-title">Bandera de México</h1>
+
+        <div class="labels-container">
+            <div class="label-item">Esperanza</div>
+            <div class="label-item">Unidad</div>
+            <div class="label-item">Sangre de los héroes</div>
+        </div>
+
+        <div id="main-flag" class="flag-wrapper">
+            <div id="stripe-green" class="flag-stripe"></div>
+            <div id="stripe-white" class="flag-stripe">
+                <img src="assets/EscudoMX.png" alt="Escudo Nacional" class="national-shield">
+            </div>
+            <div id="stripe-red" class="flag-stripe"></div>
+        </div>
+
+        <div class="ui-container">
+            <div class="control-box neon-green">
+               <input type="range" id="range-green" min="0" max="100" value="50">
+                <div class="hex-text" id="hex-green">#006847</div>
+            </div>
+
+            <div class="control-box no-border">
+                <div class="hex-text" style="color: #fff;">#FFFFFF</div>
+            </div>
+
+            <div class="control-box neon-red">
+                <input type="range" id="range-red" min="0" max="100" value="50">
+                <div class="hex-text" id="hex-red">#CE1126</div>
+            </div>
+        </div>
+
+        <footer class="student-info neon-blue">
+            <h2>Datos del Alumno</h2>
+            <p><strong>Nombre:</strong> Ramirez Vera David Adolfo</p>
+            <p><strong>Número de Control:</strong> 23200883</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
