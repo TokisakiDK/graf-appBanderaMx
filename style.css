@@ -1,26 +1,27 @@
-/* Definición de variables de colores neón para reutilizarlas fácilmente */
+/* Definición de variables globales para los colores neón */
 :root {
     --neon-green: #00ff88;
     --neon-red: #ff0044;
     --neon-blue: #00d9ff;
 }
 
+/* Configuración general del cuerpo: centrado y fondo visible */
 body {
     margin: 0;
     padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
     color: white;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* CONFIGURACIÓN DEL FONDO: rgba(0,0,0,0.3) hace que la imagen sea muy visible */
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+    /* Fondo con imagen local y capa de oscuridad baja (0.4) para visibilidad */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                 url('assets/Bosque.jpeg') no-repeat center center fixed;
     background-size: cover;
 }
 
-/* Contenedor principal para centrar todo el contenido */
+/* Contenedor principal que organiza los elementos verticalmente */
 .main-container {
     width: 95%;
     max-width: 1300px;
@@ -30,18 +31,20 @@ body {
     gap: 15px;
 }
 
-/* Estilo del título con sombra blanca suave */
+/* Estilo del título con sombra sutil */
 .main-title {
     font-size: 3rem;
     text-transform: uppercase;
     text-shadow: 0 0 15px rgba(255,255,255,0.3);
+    margin: 0;
 }
 
-/* Distribución de los significados sobre la bandera */
+/* Distribución de los textos de significado sobre la bandera */
 .labels-container {
     display: flex;
     width: 100%;
     justify-content: space-around;
+    margin-top: 10px;
 }
 
 .label-item {
@@ -49,21 +52,22 @@ body {
     text-align: center;
     font-size: 1.8rem;
     font-weight: bold;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    text-shadow: 2px 2px 10px rgba(0,0,0,1);
 }
 
-/* Diseño de la bandera: grande, bordes redondeados y resplandor inicial */
+/* Contenedor de la bandera con bordes redondeados y transición de sombra */
 .flag-wrapper {
     display: flex;
     width: 100%;
     height: 550px;
     border-radius: 12px;
     overflow: hidden;
+    margin: 10px 0;
     border: 4px solid rgba(255, 255, 255, 0.9);
-    transition: box-shadow 0.1s ease; /* Permite que el neón cambie suavemente */
+    transition: box-shadow 0.1s ease;
 }
 
-/* Franjas individuales de la bandera */
+/* Estilo para cada una de las tres franjas de la bandera */
 .flag-stripe {
     flex: 1;
     display: flex;
@@ -73,28 +77,42 @@ body {
 
 #stripe-white { background-color: #ffffff; }
 
-/* Tamaño y sombra del Escudo Nacional */
+/* Ajuste del escudo nacional con sombra para resaltar sobre el blanco */
 .national-shield {
     width: 70%;
     max-width: 320px;
     filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
 }
 
-/* Estilo de los cuadros de control (traslúcidos para ver el fondo) */
+/* Contenedor para alinear los controles bajo la bandera */
+.ui-container {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Estilo de los cuadros de control (sliders y hex) con fondo traslúcido */
 .control-box {
     flex: 1;
-    background: rgba(0, 0, 0, 0.65); /* Opacidad reducida para ver el bosque */
+    background: rgba(0, 0, 0, 0.85);
     padding: 25px;
     border-radius: 15px;
     text-align: center;
     border: 3px solid transparent;
 }
 
-/* Efectos neón específicos para los bordes */
+/* Variaciones de bordes y sombras neón */
 .neon-green { border-color: var(--neon-green); box-shadow: 0 0 20px var(--neon-green); }
 .neon-red { border-color: var(--neon-red); box-shadow: 0 0 20px var(--neon-red); }
+.no-border { background: none; border: none; }
 
-/* Estilo de los textos hexadecimales grandes */
+/* Estilo del slider (barra de rango) */
+input[type="range"] {
+    width: 90%;
+    cursor: pointer;
+}
+
+/* Estilo de los textos hexadecimales */
 .hex-text {
     margin-top: 15px;
     font-family: 'Courier New', monospace;
@@ -102,13 +120,16 @@ body {
     font-weight: bold;
 }
 
-/* Cuadro de datos personales del alumno */
+/* Cuadro informativo del alumno con efecto neón azul */
 .student-info {
     min-width: 500px;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.95);
     border: 3px solid var(--neon-blue);
     box-shadow: 0 0 25px var(--neon-blue);
     border-radius: 20px;
     text-align: center;
 }
+
+.student-info h2 { font-size: 2rem; color: var(--neon-blue); margin-bottom: 10px; }
+.student-info p { font-size: 1.4rem; margin: 5px 0; }

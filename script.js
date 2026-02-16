@@ -1,4 +1,4 @@
-// Referencias a los elementos del HTML
+// Selección de elementos del DOM para manipularlos
 const rangeGreen = document.getElementById('range-green');
 const rangeRed = document.getElementById('range-red');
 const stripeGreen = document.getElementById('stripe-green');
@@ -7,12 +7,12 @@ const hexGreen = document.getElementById('hex-green');
 const hexRed = document.getElementById('hex-red');
 const mainFlag = document.getElementById('main-flag');
 
-// Variables globales para rastrear el color actual de cada lado
+// Variables para almacenar los colores actuales en formato Hex
 let currentGreen = "#000000";
 let currentRed = "#000000";
 
 /**
- * Función auxiliar: Convierte un número (0-255) a texto Hexadecimal (00-FF)
+ * Función auxiliar para convertir un número decimal a hexadecimal de 2 dígitos
  */
 function toHex(n) {
     const h = Math.max(0, Math.min(255, n)).toString(16);
@@ -20,54 +20,51 @@ function toHex(n) {
 }
 
 /**
- * Actualiza dinámicamente el resplandor Neón de la bandera 
- * basándose en los colores elegidos por el usuario.
+ * Actualiza el resplandor neón exterior de la bandera
+ * Combina el blanco central con los colores dinámicos de los extremos
  */
 function updateFlagNeon() {
-    // Sombra 1: Brillo blanco interno
-    // Sombra 2: Resplandor verde a la izquierda
-    // Sombra 3: Resplandor rojo a la derecha
     mainFlag.style.boxShadow = `
         0 0 15px #fff, 
-        -25px 0 50px ${currentGreen}, 
-        25px 0 50px ${currentRed}
+        -20px 0 40px ${currentGreen}, 
+        20px 0 40px ${currentRed}
     `;
 }
 
 /**
- * Lógica para el color Verde: Calcula el brillo de 0 (negro) a 255 (máximo)
+ * Gestiona el cambio en la franja verde: desde negro hasta verde brillante
  */
 function updateGreen() {
     const intensity = parseInt(rangeGreen.value);
-    const g = Math.floor((intensity / 100) * 255); // Escala el valor del slider
+    const g = Math.floor((intensity / 100) * 255);
+    currentGreen = `#00${toHex(g)}00`.toUpperCase();
     
-    currentGreen = `#00${toHex(g)}00`.toUpperCase(); // Construye el código Hex
-    
-    stripeGreen.style.backgroundColor = currentGreen; // Cambia el color de la franja
-    hexGreen.textContent = currentGreen; // Muestra el texto Hex
-    
-    updateFlagNeon(); // Sincroniza el neón de la bandera
-}
-
-/**
- * Lógica para el color Rojo: Calcula el brillo de 0 (negro) a 255 (máximo)
- */
-function updateRed() {
-    const intensity = parseInt(rangeRed.value);
-    const r = Math.floor((intensity / 100) * 255);
-    
-    currentRed = `#${toHex(r)}0000`.toUpperCase();
-    
-    stripeRed.style.backgroundColor = currentRed;
-    hexRed.textContent = currentRed;
+    stripeGreen.style.backgroundColor = currentGreen;
+    hexGreen.textContent = currentGreen;
+    hexGreen.style.color = intensity > 40 ? '#00ff88' : '#fff';
     
     updateFlagNeon();
 }
 
-// Escuchadores de eventos: Se disparan cada vez que mueves la barrita
+/**
+ * Gestiona el cambio en la franja roja: desde negro hasta rojo brillante
+ */
+function updateRed() {
+    const intensity = parseInt(rangeRed.value);
+    const r = Math.floor((intensity / 100) * 255);
+    currentRed = `#${toHex(r)}0000`.toUpperCase();
+    
+    stripeRed.style.backgroundColor = currentRed;
+    hexRed.textContent = currentRed;
+    hexRed.style.color = intensity > 40 ? '#ff0044' : '#fff';
+    
+    updateFlagNeon();
+}
+
+// Escuchadores de eventos para detectar movimiento en los sliders
 rangeGreen.addEventListener('input', updateGreen);
 rangeRed.addEventListener('input', updateRed);
 
-// Ejecución inicial para establecer los colores al cargar la página
+// Llamada inicial para renderizar la página con los colores por defecto
 updateGreen();
 updateRed();
